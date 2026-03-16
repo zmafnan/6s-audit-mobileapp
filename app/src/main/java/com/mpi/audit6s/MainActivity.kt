@@ -9,19 +9,25 @@ import androidx.cardview.widget.CardView
 
 /**
  * Main activity that displays the audit type selection screen.
- * Contains two options: Production Audit and Non-Production Audit.
+ * Contains options: Production Audit, Warehouse Audit, Non-Production Audit, and Schedule.
  */
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
-    // URLs for the different audit types
+    // URLs for the different audit types and schedule
     private val PRODUCTION_AUDIT_URL = "https://192.168.16.5:5174/6S/production-audit/create"
+    private val WAREHOUSE_AUDIT_URL = "https://192.168.16.5:5174/6S/production-audit/createwarehouse"
     private val NON_PRODUCTION_AUDIT_URL = "https://192.168.16.5:5174/6S/non-production-audit/create"
+    private val SCHEDULE_URL = "https://192.168.16.5:5174/6S/schedule/mobile"
 
     // UI elements
     private lateinit var productionCard: CardView
+    private lateinit var warehouseCard: CardView
     private lateinit var nonProductionCard: CardView
+    private lateinit var scheduleCard: CardView
     private lateinit var productionButton: Button
+    private lateinit var warehouseButton: Button
     private lateinit var nonProductionButton: Button
+    private lateinit var scheduleButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,9 +45,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
      */
     private fun initializeViews() {
         productionCard = findViewById(R.id.card_production)
+        warehouseCard = findViewById(R.id.card_warehouse)
         nonProductionCard = findViewById(R.id.card_non_production)
+        scheduleCard = findViewById(R.id.card_schedule)
         productionButton = findViewById(R.id.btn_production)
+        warehouseButton = findViewById(R.id.btn_warehouse)
         nonProductionButton = findViewById(R.id.btn_non_production)
+        scheduleButton = findViewById(R.id.btn_schedule)
     }
 
     /**
@@ -50,9 +60,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun setClickListeners() {
         // Set this activity as the click listener for all clickable elements
         productionCard.setOnClickListener(this)
+        warehouseCard.setOnClickListener(this)
         nonProductionCard.setOnClickListener(this)
+        scheduleCard.setOnClickListener(this)
         productionButton.setOnClickListener(this)
+        warehouseButton.setOnClickListener(this)
         nonProductionButton.setOnClickListener(this)
+        scheduleButton.setOnClickListener(this)
     }
 
     /**
@@ -65,9 +79,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 openAuditWebView(PRODUCTION_AUDIT_URL)
             }
 
+            // Warehouse audit clicks
+            R.id.card_warehouse, R.id.btn_warehouse -> {
+                openAuditWebView(WAREHOUSE_AUDIT_URL)
+            }
+
             // Non-production audit clicks
             R.id.card_non_production, R.id.btn_non_production -> {
                 openAuditWebView(NON_PRODUCTION_AUDIT_URL)
+            }
+
+            // Schedule clicks
+            R.id.card_schedule, R.id.btn_schedule -> {
+                openAuditWebView(SCHEDULE_URL)
             }
         }
     }

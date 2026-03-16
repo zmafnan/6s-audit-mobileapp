@@ -4,4 +4,7 @@
     <external-path name="my_documents" path="." />
     <external-files-path name="my_external_files" path="." />
     <cache-path name="my_cache_images" path="." />
+    <!-- Add these new paths to support Downloads folder access -->
+    <external-path name="external_downloads" path="Download" />
+    <root-path name="root" path="." />
 </paths>
